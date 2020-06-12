@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Line Drawing</title>
+    <script src="{% static 'js/jquery.min.js' %}" defer ></script>
+    <script src="{% static 'js/app.js' %}" defer ></script>
+    <style>
+        canvas{
+            background-image: url("{% static 'img/palm.jpg' %}");
+            cursor: crosshair;
+            border: 2px solid black;
+            background-position: center;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400">
+        You b
+    </canvas>
+    <div id='json' style="float: right;">
+        json:
+    </div><br>
+    <button type="button" id="clear">clear all</button> 
+    <button type="button" id="erase">Erase</button>
+    <button type="button" id="save">Save</button>
+    <button type="button" id="last">Get Last Line</button>
+</body>
+</html>
