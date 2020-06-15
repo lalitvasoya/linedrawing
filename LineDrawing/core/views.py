@@ -9,7 +9,7 @@ class Index(TemplateView):
     template_name='index.html'
 
 
-class SaveAxis(View):
+class SaveAxes(View):
     """ Save Coordinates in db """
     def get(self,request,*args, **kwargs):
         if request.is_ajax():
@@ -23,7 +23,7 @@ class SaveAxis(View):
         return JsonResponse({'data':'save'},status=200)
 
 
-class ClearAxis(View):
+class ClearAxes(View):
     """ Clear Coordinate """
 
     def get(self,request,*args, **kwargs):
@@ -34,10 +34,13 @@ class ClearAxis(View):
         return JsonResponse({'data':'clear'},status=200)
 
 
-class LastAxis(View):
-    """ Get Last Drawing line """
+class GetLines(View):
+    """ Get Lasts Drawing line """
 
     def get(self,request,*args, **kwargs):
         if request.is_ajax():
             palm = PalmLine.objects.get(user=request.user)
-            return JsonResponse({'coordinate':palm.lines['coordinate'][-1]},status=200)
+            if request.GET.get('which')=='last':
+                return JsonResponse({'coordinate':palm.lines['coordinate'][-1]},status=200)
+            else:
+                return JsonResponse({'coordinate':palm.lines['coordinate']},status=200)

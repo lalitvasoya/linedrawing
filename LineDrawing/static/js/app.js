@@ -12,8 +12,12 @@ let status=ERASE;
 
 
 // For Drawing Line on Canvas 
-const drawLine = function(x,y,endPX,endPY){
-  context.clearRect (0, 0, canvas.width, canvas.height);
+const drawLine = function(x,y,endPX,endPY,erase=true){
+  
+  if(erase){
+    console.log(erase)
+    context.clearRect (0, 0, canvas.width, canvas.height);
+  }
   context.beginPath();
   context.lineWidth=3;
   context.moveTo(x,y);
@@ -101,9 +105,9 @@ $('#save').on('click',function(){
 //Getting Last Lines Axes and Draw Line
 $('#last').on('click',function(){
   $.ajax({
-    url:'/last',
+    url:'/getlines',
     type:'GET',
-    data:'',
+    data:{'which':'last'},
     dataType:'json',
     success:function(result){
       data =result['coordinate']
@@ -112,3 +116,19 @@ $('#last').on('click',function(){
   });
 });
 
+
+//Getting All Lines Axes and Draw Lines
+$('#all').on('click',function(){
+  $.ajax({
+    url:"/getlines",
+    type:'GET',
+    data:{'which':'all'},
+    dataType:'json',
+    success:function(result){
+      for(data of result['coordinate'])
+      {
+        drawLine(data['startX'],data['startY'],data['endX'],data['endY'],false);
+      }
+    }
+  });
+});
