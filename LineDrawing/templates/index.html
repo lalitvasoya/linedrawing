@@ -4,7 +4,8 @@
 <head>
     <title>Line Drawing</title>
     <script src="{% static 'js/jquery.min.js' %}" defer ></script>
-    <script src="{% static 'js/app.js' %}" defer ></script>
+    <script src="{% static 'js/config.js' %}" defer></script>
+    <script src="{% static 'js/app.js' %}"  type="module" defer ></script>
     <style>
         canvas{
             background-image: url("{% static 'img/palm.jpg' %}");
@@ -19,13 +20,15 @@
     <canvas id="canvas" width="400" height="400">
         You b
     </canvas>
-    <div id='json' style="float: right;">
-        json:
-    </div><br>
-    <button type="button" id="clear">clear all</button> 
-    <button type="button" id="erase">Erase</button>
+    <br>
+    <br><hr>
+    <input type="radio" value="line" name="line-type" checked> Line
+    <input type="radio" value="free-line" name="line-type"> Free Line<br>
     <button type="button" id="save">Save</button>
+    <button type="button" id="erase">Erase</button>
     <button type="button" id="last">Get Last Line</button>
-    <button type="button" id="all">Get All Line</button>
+    <button type="button" id="all">Get All Line</button><br><hr>    
+    <button type="button" id="clear">clear all</button> <hr>
+    <button type="button" id="get-last-free-line">get last free line</button>
 </body>
 </html>
