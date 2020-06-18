@@ -38,7 +38,7 @@ const drawLine = function(x,y,endPX,endPY,erase=true){
 const moveiLine = function(x,y,endPX,endPY,erase=true){
   // console.log(allLine)
   allLine.forEach((ele)=>{
-    console.log(context.isPointInStroke(x,y))
+    
     if(context.isPointInStroke(x,y)){
       context.strokeStyle='green'
       // context.stroke()
@@ -60,7 +60,7 @@ $(document).ready(function(){
     $('canvas').mousedown(function(e){
 
       [startX,startY]=[e.pageX-minusX,e.pageY-minusY]
-
+      console.log(startX,startY)
      
       $(this).bind('mousemove', moveMoveFunc);
     });
